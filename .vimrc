@@ -53,11 +53,13 @@ set pastetoggle=<F2>
 set tabstop=4
 set shiftwidth=4
 set expandtab
-autocmd FileType ruby,eruby,yaml set autoindent shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType ruby,eruby,yaml 
+            \ set autoindent shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType c set autoindent shiftwidth=4 softtabstop=4 noexpandtab
 
 " Switch between tabs and spaces for indentation
-nmap <silent> <S-t> :set expandtab! | if &expandtab | retab | echo 'spaces' | else | retab! | echo 'tabs' | endif<CR>
+nmap <silent> <S-t> :set expandtab! | if &expandtab | retab |
+            \ echo 'spaces' | else | retab! | echo 'tabs' | endif<CR>
 
 " Highlight trailing whitespace characters
 match Todo /\s\+$/
@@ -92,3 +94,17 @@ set directory=~/.vimtmp,.
 
 " Load plugins
 runtime plugin/adjust-tabstop.vim
+
+" Highlight starting with 80th column as oversize warning
+highlight OverLength ctermfg=red guibg=#592929
+match OverLength /\%80v.\+/
+
+" Map Ctrl-J to insert linefeed after and Ctrl-K - before.
+" Leaves cursor in position through ` mark
+nnoremap <C-k> m`O<Esc>``
+nnoremap <C-j> m`o<Esc>``
+
+" Map Ctrl-L to split the line at current position
+nnoremap <C-L> m`i<CR><Esc>``
+" nnoremap <C-L> m`ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>
+"            \ exec "norm P-$diw+"<Bar>endif<CR>``
