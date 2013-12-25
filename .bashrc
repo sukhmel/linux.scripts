@@ -1,3 +1,4 @@
+#! /bin/sh
 #
 # ~/.bashrc
 #
@@ -52,13 +53,24 @@ color_enabled() {
 
 BOLD_FORMAT="${BOLD_FORMAT-$(color_enabled && tput bold)}"
 ERROR_FORMAT="${ERROR_FORMAT-$(color_enabled && tput setaf 1)}"
+OK_FORMAT="${OK_FORMAT-$(color_enabled && tput setaf 2)}"
 WARNING_FORMAT="${WARNING_FORMAT-$(color_enabled && tput setaf 3)}"
 INFO_FORMAT="${INFO_FORMAT-$(color_enabled && tput setaf 4)}"
 RESET_FORMAT="${RESET_FORMAT-$(color_enabled && tput sgr0)}"
 
-# Exit code
-PS1='$(exit_code=$?; [[ $exit_code -eq 0 ]] || printf %s $BOLD_FORMAT $ERROR_FORMAT $exit_code $RESET_FORMAT " ")'
+error_format() {
+    if [ $exit_code -ne '0' ]; then
+        FORMAT=$ERROR_FORMAT
+    else
+        FORMAT=$OK_FORMAT
+    fi
+    printf $FORMAT
+}
 
+# Exit code
+PS1='$(exit_code=$?; if [ $exit_code -ne '0' ]; then FORMAT=$ERROR_FORMAT; else FORMAT=$OK_FORMAT; fi; printf %s $BOLD_FORMAT $FORMAT $exit_code $RESET_FORMAT " ")'
+# Time
+PS1="$PS1"'\[$BOLD_FORMAT\]\[$WARNING_FORMAT\]$(date +%H:%m) \[$RESET_FORMAT\]'
 if [[ "$USER" = 'root' ]]
 then
     PS1="$PS1"'\[$BOLD_FORMAT\]\[$ERROR_FORMAT\]\u\[$RESET_FORMAT\]'
