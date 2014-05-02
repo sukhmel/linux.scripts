@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Skype messenger
+TryExec=skype
+Exec=skype
+Hidden=false

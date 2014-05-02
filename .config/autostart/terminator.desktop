@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Drop-down console Terminator
+TryExec=terminator
+Exec=terminator -b -H -l dropdown
+Hidden=false
+Comment=
+

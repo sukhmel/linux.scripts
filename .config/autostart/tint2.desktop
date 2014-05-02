@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Bottom Panel
+TryExec=tint2
+Exec=tint2
+Hidden=true

@@ -1,0 +1,84 @@
+[global_config]
+  hide_on_lose_focus = True
+  title_hide_sizetext = True
+  dbus = True
+  sticky = True
+  always_on_top = True
+  enabled_plugins = TerminalShot, APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
+  title_transmit_bg_color = "#9e0002"
+  hide_from_taskbar = True
+  tab_position = bottom
+[keybindings]
+  cycle_prev = <Ctrl><Shift>Tab
+  close_window = <Ctrl><Shift>q
+  resize_left = <Super>KP_Left
+  move_tab_left = <Ctrl><Shift>KP_Left
+  resize_right = <Super>KP_Right
+  resize_down = <Super>KP_Down
+  toggle_zoom = <Ctrl><Shift>x
+  scaled_zoom = <Ctrl><Shift>z
+  zoom_in = <Ctrl>KP_Add
+  paste = <Ctrl><Shift>v
+  prev_tab = <Ctrl><Shift>Left
+  cycle_next = <Ctrl>Tab
+  split_vert = <Ctrl><Shift>v
+  zoom_out = <Ctrl>KP_Subtract
+  go_prev = <Ctrl><Shift>p
+  close_term = <Ctrl><Shift>w
+  go_next = <Ctrl><Shift>n
+  new_tab = <Ctrl><Shift>t
+  copy = <Ctrl><Shift>c
+  hide_window = <Ctrl>grave
+  reset = <Ctrl><Shift>r
+  search = <Ctrl><Shift>f
+  resize_up = <Super>KP_Up
+  next_tab = <Ctrl><Shift>Right
+  split_horiz = <Ctrl><Shift>h
+  zoom_normal = <Ctrl>KP_Begin
+  move_tab_right = <Ctrl><Shift>KP_Right
+  new_window = <Ctrl><Shift>i
+  reset_clear = <Ctrl><Shift>g
+  toggle_scrollbar = <Ctrl><Shift>s
+[profiles]
+  [[default]]
+    urgent_bell = True
+    font = Monospace 11
+    audible_bell = True
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+  [[quake]]
+    [[[child0]]]
+      fullscreen = False
+      maximised = False
+      parent = ""
+      title = terminal
+      position = 0:29
+      type = Window
+      order = 0
+      size = 1413, 402
+    [[[terminal1]]]
+      profile = default
+      type = Terminal
+      order = 0
+      parent = child0
+  [[dropdown]]
+    [[[child0]]]
+      position = 0:28
+      type = Window
+      order = 0
+      parent = ""
+      size = 1420, 402
+    [[[terminal1]]]
+      profile = default
+      command = ""
+      type = Terminal
+      order = 0
+      parent = child0
+[plugins]

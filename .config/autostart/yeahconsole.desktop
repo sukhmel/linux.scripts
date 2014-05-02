@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Drop-down console
+TryExec=yeahconsole
+Exec=yeahconsole
+Hidden=true
+Comment=
+

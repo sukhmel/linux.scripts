@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Bottom Panel
+TryExec=lxpanel
+Exec=lxpanel
+Hidden=true

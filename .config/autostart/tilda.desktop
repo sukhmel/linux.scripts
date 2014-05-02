@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application Name=Drop-down console
+TryExec=tilda
+Exec=tilda
+Hidden=true
+Comment=
+

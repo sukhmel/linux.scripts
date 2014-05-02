@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+		<item label="chrome">
+			<action name="Execute">
+				<execute>
+					chromium
+				</execute>
+			</action>
+		</item>
+		<item label="furryfox">
+			<action name="Execute">
+				<execute>
+                    firefox
+				</execute>
+			</action>
+		</item>
+		<item label="home">
+			<action name="Execute">
+				<execute>spacefm -t ~</execute>
+			</action>
+		</item>
+		<item label="run">
+			<action name="Execute">
+				<execute>xfrun4</execute>
+			</action>
+		</item>
+		<separator/>
+		<menu id="client-list-menu"/>
+		<separator/>
+		<menu id="/Debian"/>
+		<separator/>
+		<!-- This requires the presence of the 'menu' package to work -->
+		<item label="terminal emulator">
+			<action name="Execute">
+				<execute>
+					xfce4-terminal
+				</execute>
+			</action>
+		</item>
+		<item label="ingocnichrome">
+			<action name="Execute">
+				<execute>
+					chromium --incognito
+				</execute>
+			</action>
+		</item>
+		<item label="incognifox">
+			<action name="Execute">
+				<execute>
+					firefox -private
+				</execute>
+			</action>
+		</item>
+		<separator/>
+		<menu id="root-menu-67933" label="fast access">
+			<item label="game of go">
+				<action name="Execute">
+					<execute>
+	    				cgoban
+	    			</execute>
+				</action>
+			</item>
+			<item label="smart git">
+				<action name="Execute">
+					<execute>
+	    				smartgit
+	    			</execute>
+				</action>
+			</item>
+			<item label="yarxi">
+				<action name="Execute">
+					<execute>
+	    		        yarxi
+	    			</execute>
+				</action>
+			</item>
+			<item label="geany">
+				<action name="Execute">
+					<execute>
+	    		    	geany
+	    			</execute>
+				</action>
+			</item>
+		</menu>
+		<separator/>
+		<menu id="root-menu-20713" label="openbox">
+			<item label="obmenu">
+				<action name="Execute">
+					<execute>obmenu</execute>
+				</action>
+			</item>
+			<item label="obconf">
+				<action name="Execute">
+					<execute>obconf</execute>
+				</action>
+			</item>
+			<item label="reconfigure">
+				<action name="Reconfigure"/>
+			</item>
+			<item label="restart">
+				<action name="Restart"/>
+			</item>
+		</menu>
+		<separator/>
+		<item label="update">
+			<action name="Execute">
+				<execute>xfce4-terminal -e &quot;sudo ~/.update&quot;</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="hibernate">
+			<action name="Execute">
+				<execute>
+					xfce4-terminal -e &quot;sudo pm-hibernate&quot;
+				</execute>
+			</action>
+		</item>
+		<item label="reboot">
+			<action name="Execute">
+				<execute>
+					xfce4-terminal -e &quot;sudo /sbin/reboot&quot;
+				</execute>
+			</action>
+		</item>
+		<item label="halt">
+			<action name="Execute">
+				<execute>
+					xfce4-terminal -e &quot;sudo /sbin/shutdown -h -P \&quot;now\&quot;&quot;
+				</execute>
+			</action>
+		</item>
+		<item label="exit">
+			<action name="Execute">
+				<execute>
+                    xfce4-session-logout
+                </execute>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>
