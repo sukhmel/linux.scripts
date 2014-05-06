@@ -42,7 +42,7 @@
 [profiles]
   [[default]]
     urgent_bell = True
-    font = Monospace 11
+    font = Droid Sans Mono 11
     audible_bell = True
     use_system_font = False
 [layouts]
@@ -58,7 +58,7 @@
       fullscreen = False
       maximised = False
       parent = ""
-      title = terminal
+      title = idji@deb:/home/idji/downloads/packages/terminal/terminator
       position = 0:29
       type = Window
       order = 0
