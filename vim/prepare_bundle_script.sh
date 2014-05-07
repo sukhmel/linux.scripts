@@ -25,6 +25,7 @@ do
     fi
 done
 
+echo \#! /bin/sh >> bundle.sh
 echo $RESULT >> bundle.sh
 chmod +x bundle.sh
 
