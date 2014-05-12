@@ -154,8 +154,7 @@ set ttimeoutlen=50
 let g:airline_left_sep  = ''
 let g:airline_right_sep = ''
 let g:airline_section_c = '%<%F%h%m%r'
-let g:airline_section_d = '%{SyntasticStatuslineFlag()}'
-let g:airline_section_b = '%{strftime("%Y-%m-%d %H:%M")}'
+let g:airline_section_b = '%{fugitive#statusline()} %{strftime("%H:%M")}'
 
 " Statusline setup
 " set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%Y-%m-%d\ %H:%M\")}
@@ -220,3 +219,10 @@ au FileType haskell setlocal omnifunc=necoghc#omnifunc
 au FileType haskell setlocal completefunc=neocomplcache#completefunc
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+funct! Exec(command)
+    redir =>output
+    silent exec a:command
+    redir END
+    return output
+endfunct!

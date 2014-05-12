@@ -1,15 +1,17 @@
 #! /bin/sh
 
 RESULT=""
-PWD=$(pwd)
+ORIGIN=$(pwd)
 
 cd $HOME
 if ! [ -d '.vim' ]
+then
     mkdir .vim
 fi
 
 cd .vim
 if ! [ -d 'bundle' ]
+then
     mkdir bundle
 fi
 
@@ -20,13 +22,13 @@ do
     then
         #echo $file
         cd $file
-        RESULT=$RESULT'\n'$(git remote show origin | grep "Fetch" | sed 's/Fetch\ URL:/git\ clone/')
+        RESULT=$RESULT'\n'$(git remote show origin | grep "Fetch" | sed 's/^[^:]*:/git\ clone/')
         cd ..
     fi
 done
 
+cd $ORIGIN
+
 echo \#! /bin/sh >> bundle.sh
 echo $RESULT >> bundle.sh
 chmod +x bundle.sh
-
-cd $PWD
