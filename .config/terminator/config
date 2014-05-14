@@ -1,10 +1,12 @@
 [global_config]
   hide_on_lose_focus = True
+  enabled_plugins = TerminalShot, APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
   title_hide_sizetext = True
   dbus = True
   sticky = True
   always_on_top = True
-  enabled_plugins = TerminalShot, APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
+  borderless = True
+  geometry_hinting = False
   title_transmit_bg_color = "#9e0002"
   hide_from_taskbar = True
   tab_position = bottom
@@ -45,6 +47,8 @@
     font = Droid Sans Mono 11
     audible_bell = True
     use_system_font = False
+    emulation = xterm
+    exit_action = restart
 [layouts]
   [[default]]
     [[[child1]]]

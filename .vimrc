@@ -1,12 +1,6 @@
 " Not running Vi
 set nocompatible
 
-" 256 colours in terminal
-set t_Co=256
-" WTF?
-" set t_AB=^[[48;5;%dm
-" set t_AF=^[[38;5;%dm
-
 " pathogen to manage paths and plugins
 execute pathogen#infect()
 Helptags
@@ -57,12 +51,6 @@ set autowrite
 " Hide buffers when they are abandoned
 set hidden
 
-" Enable mouse usage (all modes) in terminals
-"set mouse=a
-
-" Backspace behaving as in other editors
-set backspace=indent,eol,start
-
 " Press F2 before pasting text to avoid crazy indentation
 set pastetoggle=<F2>
 
@@ -78,10 +66,13 @@ autocmd FileType c set autoindent shiftwidth=4 softtabstop=4 noexpandtab
 nmap <silent> <S-t> :set expandtab! | if &expandtab | retab |
             \ echo 'spaces' | else | retab! | echo 'tabs' | endif<CR>
 
+" Highlight starting with 80th column as oversize warning
+autocmd BufWinEnter,BufRead,InsertLeave * 2match OverLength /\%81v.\+/
+set colorcolumn=80
+
 " Highlight trailing whitespace characters or tabs
 autocmd BufWinEnter * match ExtraWhitespace /\t/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " Replace CR with LF
@@ -115,10 +106,6 @@ set directory=~/.vimtmp,.
 " Load plugins
 runtime plugin/adjust-tabstop.vim
 
-" Highlight starting with 80th column as oversize warning
-highlight OverLength ctermfg=red guibg=#592929
-match OverLength /\%80v.\+/
-
 " Map Ctrl-J to insert linefeed after and Ctrl-K - before.
 " Leaves cursor in position through ` mark
 nnoremap <C-k> m`O<Esc>``
@@ -138,6 +125,7 @@ au FileType haskell compiler ghc
 " Neco-ghc setup
 let g:haddock_browser="/usr/bin/lynx"
 let g:necoghc_enable_detailed_browse = 1
+let g:ghc_symbolcache=1
 " let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 au BufEnter *.hs set formatprg=pointfree.wrap.sh
@@ -157,17 +145,20 @@ let g:airline_section_c = '%<%F%h%m%r'
 let g:airline_section_b = '%{fugitive#statusline()} %{strftime("%H:%M")}'
 
 " Statusline setup
-" set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%Y-%m-%d\ %H:%M\")}
-" set statusline+=%=\ \@\ %l:%c%V\,\ %P
 set noshowmode
-set laststatus=2
 
 " Colorscheme and its tweaks to ensure better look
-colorscheme industry
+if &t_Co==256
+    colorscheme industry
+    let g:airline_theme = 'molokai'
+else
+    colorscheme solarized
+    let g:airline_theme = 'jellybeans'
+endif
 highlight Folded cterm=underline term=underline ctermbg=none
 highlight Conceal cterm=bold ctermbg=none
-let g:airline_theme = 'molokai'
-
+highlight ColorColumn ctermbg=darkgrey
+highlight OverLength  ctermbg=darkblue
 " Neocomplcache setup
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
