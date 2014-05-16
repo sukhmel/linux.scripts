@@ -30,6 +30,10 @@ endif
 " Load indentation rules according to the detected filetype
 filetype plugin indent on
 
+" Show numbers, relative
+set number
+set relativenumber
+
 " Show (partial) command in status line
 set showcmd
 
@@ -75,11 +79,8 @@ autocmd BufWinEnter * match ExtraWhitespace /\t/
 autocmd BufWinEnter,InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" Replace CR with LF
-noremap <C-n> :%s/\r/\r/g <CR>
-
-" Reformat current paragraph
-noremap <C-f> gwap
+" Open split to the right side
+set splitright
 
 " Sort words
 command! -nargs=0 -range SortWords call VisualSortWords()
