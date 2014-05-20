@@ -1,6 +1,8 @@
 " Not running Vi
 set nocompatible
 
+filetype plugin on
+
 " pathogen to manage paths and plugins
 execute pathogen#infect()
 Helptags
@@ -104,9 +106,6 @@ set encoding=utf-8
 set backupdir=~/.vimtmp,.
 set directory=~/.vimtmp,.
 
-" Load plugins
-runtime plugin/adjust-tabstop.vim
-
 " Map Ctrl-J to insert linefeed after and Ctrl-K - before.
 " Leaves cursor in position through ` mark
 nnoremap <C-k> m`O<Esc>``
@@ -116,24 +115,6 @@ nnoremap <C-j> m`o<Esc>``
 nnoremap <C-L> m`i<CR><Esc>``
 " nnoremap <C-L> m`ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>
 "            \ exec "norm P-$diw+"<Bar>endif<CR>``
-
-" Haskell specific
-au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
-au FileType haskell nnoremap <buffer> <silent> O1;2P :HdevtoolsClear<CR>
-au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
-au FileType haskell compiler ghc
-
-" Neco-ghc setup
-let g:haddock_browser="/usr/bin/lynx"
-let g:necoghc_enable_detailed_browse = 1
-let g:ghc_symbolcache=1
-" let g:ycm_semantic_triggers = {'haskell' : ['.']}
-
-au BufEnter *.hs set formatprg=pointfree.wrap.sh
-
-" Vim2hs wide range concealing settings
-let g:haskell_conceal_wide = 1
-let g:haskell_conceal_bad  = 1
 
 " Syntastic setup
 let g:syntastic_check_on_wq=0
@@ -160,6 +141,14 @@ highlight Folded cterm=underline term=underline ctermbg=none
 highlight Conceal cterm=bold ctermbg=none
 highlight ColorColumn ctermbg=darkgrey
 highlight OverLength  ctermbg=darkblue
+
+funct! Exec(command)
+    redir =>output
+    silent exec a:command
+    redir END
+    return output
+endfunct!
+
 " Neocomplcache setup
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -211,10 +200,3 @@ au FileType haskell setlocal omnifunc=necoghc#omnifunc
 au FileType haskell setlocal completefunc=neocomplcache#completefunc
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-funct! Exec(command)
-    redir =>output
-    silent exec a:command
-    redir END
-    return output
-endfunct!
