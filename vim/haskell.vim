@@ -21,7 +21,6 @@ setlocal omnifunc=necoghc#omnifunc
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 let s:width = 80
-set textwidth=80
 
 function! HaskellModuleSection(...)
     let name = 0 < a:0 ? a:1 : inputdialog("Section name: ")
@@ -72,4 +71,5 @@ function! SetToCabalBuild()
   let b:my_changedtick -=1
 endfunction
 
-autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
+" autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
+set textwidth=80

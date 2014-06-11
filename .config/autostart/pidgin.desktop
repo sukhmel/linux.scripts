@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Pidgin messenger
+TryExec=pidgin
+Exec=pidgin
+Hidden=false

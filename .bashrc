@@ -3,6 +3,33 @@
 # ~/.bashrc
 #
 
+# Enable 256 color capabilities for appropriate terminals
+
+# Set this variable in your local shell config if you want remote
+# xterms connecting to this system, to be sent 256 colors.
+# This can be done in /etc/csh.cshrc, or in an earlier profile.d script.
+#   SEND_256_COLORS_TO_REMOTE=1
+
+# Terminals with any of the following set, support 256 colors (and are local)
+local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION"
+
+if [ -n "$local256" ] || [ -n "$SEND_256_COLORS_TO_REMOTE" ]; then
+
+  case "$TERM" in
+    'xterm') TERM=xterm-256color;;
+    'screen') TERM=screen-256color;;
+    'Eterm') TERM=Eterm-256color;;
+  esac
+  export TERM
+
+  if [ -n "$TERMCAP" ] && [ "$TERM" = "screen-256color" ]; then
+    TERMCAP=$(echo "$TERMCAP" | sed -e 's/Co#8/Co#256/g')
+    export TERMCAP
+  fi
+fi
+
+unset local256
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -70,7 +97,7 @@ error_format() {
 # Exit code
 PS1='$(exit_code=$?; if [ $exit_code -ne '0' ]; then FORMAT=$ERROR_FORMAT; else FORMAT=$OK_FORMAT; fi; printf %s $BOLD_FORMAT $FORMAT $exit_code $RESET_FORMAT " ")'
 # Time
-PS1="$PS1"'\[$BOLD_FORMAT\]\[$WARNING_FORMAT\]$(date +%H:%m) \[$RESET_FORMAT\]'
+PS1="$PS1"'\[$BOLD_FORMAT\]\[$WARNING_FORMAT\]$(date +%H:%M) \[$RESET_FORMAT\]'
 if [[ "$USER" = 'root' ]]
 then
     PS1="$PS1"'\[$BOLD_FORMAT\]\[$ERROR_FORMAT\]\u\[$RESET_FORMAT\]'
@@ -190,6 +217,18 @@ set -o nounset
 if [[ -d "$HOME/.rvm/bin" ]]
 then
     PATH="$PATH:$HOME/.rvm/bin"
+fi
+
+# Add binaries compiled by cabal-install
+if [[ -d "$HOME/.cabal/bin" ]]
+then
+    PATH="$PATH:$HOME/.cabal/bin"
+fi
+
+# Add cling (C++ REPL)
+if [[ -d "$HOME/downloads/cling-Fedora18-x86_64-a1c9e12809/bin" ]]
+then
+    PATH="$PATH:$HOME/downloads/cling-Fedora18-x86_64-a1c9e12809/bin"
 fi
 
 # Load perlbrew if present
