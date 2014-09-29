@@ -128,6 +128,7 @@ let g:airline_section_b = '%{fugitive#statusline()} %{strftime("%H:%M")}'
 
 " Statusline setup
 set noshowmode
+set laststatus=2
 
 " Colorscheme and its tweaks to ensure better look
 if &t_Co==256
@@ -200,3 +201,5 @@ au FileType haskell setlocal omnifunc=necoghc#omnifunc
 au FileType haskell setlocal completefunc=neocomplcache#completefunc
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+set backspace=2
